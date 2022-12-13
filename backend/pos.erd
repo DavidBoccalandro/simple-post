@@ -1,0 +1,119 @@
+erdiagram Model
+
+notation=default
+generate=sql
+
+entity User {
+   id: integer key
+	username: VARCHAR(255)
+   password: VARCHAR(255)
+   name: VARCHAR(255)
+   email: varchar(255)
+   type: VARCHAR(255)
+}
+
+entity Company {
+   id: integer key
+   tax_id: varchar(255)
+   name: varchar(255)
+   address: varchar(255)
+   phone: varchar(255)
+   email: varchar(255)
+   logo_image: varchar(255)
+}
+
+entity Customer {
+   id: integer key
+   code: varchar(255)
+   name: varchar(255)
+   address: varchar(255)
+   phone: varchar(255)
+   email: varchar(255)
+}
+
+entity Supplier {
+   id: integer key
+   name: varchar(255)
+   address: varchar(255)
+   phone: varchar(255)
+   email: varchar(255)
+}
+
+entity Product {
+   id: integer key
+   code: varchar(255)
+   name: varchar(255)
+   detail: varchar(255)
+   stock: integer
+   discount: float
+}
+
+entity Unit {
+   id: integer key
+   detail: varchar(255)
+}
+
+entity Category {
+   id: integer key
+   name: varchar(255)
+}
+
+entity Sale {
+   id: integer key
+   quantity: integer
+   price: float
+   subtotal: float
+}
+
+entity Invoice {
+   id: integer key
+   date_time: date_time
+   subtotal: float
+   tax: float
+   total: float
+   payment_type: varchar(255)
+}
+
+entity Order {
+   id: integer key
+   date_time: date_time
+   subtotal: float
+   tax: float
+   total: float
+   payment_type: varchar(255)
+}
+
+entity Purchase {
+   id: integer key
+   quantity: integer
+   price: float
+   subtotal: float
+}
+
+relationship Has {
+   Company[1] -> User[N]
+}
+
+relationship Belongs {
+   Category[1] -> Product[N]
+}
+
+relationship Has1 {
+   Unit[1] -> Product[N]
+}
+
+relationship Has2 {
+   Sale[1] -> Product[N]
+}
+
+relationship Has3 {
+   Sale[1] -> Invoice[1]
+}
+
+relationship Has4 {
+   Invoice[N] -> Customer[1]
+}
+
+relationship Creates {
+   Invoice[N] -> User[1]
+}
